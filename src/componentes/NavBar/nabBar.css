@@ -1,0 +1,39 @@
+body{
+    background-color: gray;
+}
+
+.navBar{
+      display: flex;
+      justify-content: space-between;
+      background-color: rgb(59, 57, 57);
+      margin: 10px;
+      text-align: center;
+      border-radius: 10px;
+}
+.navBar div{
+    margin: 30px;
+}
+.navBar img{
+    border-radius: 10px;
+}
+nav{
+    margin: 30px;
+}
+nav a{
+    color: rgb(112, 112, 32);
+    margin: 10px;
+    font-size: large;
+}
+.carrito{
+    display: flex;
+    justify-content:center;
+    margin: 10px;
+
+}
+.carrito imagencarro {
+    display: flex;
+    justify-content:center;
+    margin: 10px;
+    
+}
+
