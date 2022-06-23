@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import "./nabBar.css";
-import logo from "../imagenes/aguila.jpg"
+import logo from "../imagenes/aguila.jpg";
+import CardWidget from "../CardWidget";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -14,12 +15,9 @@ export const NavBar =()=>{
    const [contador,setContador]= useState(0);
    const [user,setUser]= useState([{name:'felipe'},{name:'pablo'}]);
 
-   const handlerClick= () => {
+  const handlerClick= () => {
       setContador(contador + 1);
-   }
-   const handlerClickquitar= () => {
-    setContador(contador - 1);
- }
+  }
 
  const reset=()=>{
    setContador(0);
@@ -35,9 +33,10 @@ export const NavBar =()=>{
           <img src={logo} alt="" />
           <h1>MI PROYECTO</h1>
           <nav>
-            <a href="">categoria 1 </a>
-            <a href="">categoria 2</a>
-            <a href="">categoria 3</a>
+            <a className="nav_link" href="#"> categoria 1</a>
+            <a className="nav_link" href="#"> categoria 2</a>
+            <a href=""> <CardWidget/></a>
+            <a className="nav_link" href="#"> <CardWidget/></a>
           </nav>
           <div className="carrito">
             <p>CARRITO</p>
@@ -50,7 +49,6 @@ export const NavBar =()=>{
          <div>
           <h1>{contador}</h1>
           <button onClick={handlerClick}>click</button>
-          <button onClick={handlerClickquitar}>click para quitar</button>
           <button onClick={reset}>reset</button>
           <button onClick={addValentin}>agregar vale</button>
          </div>
