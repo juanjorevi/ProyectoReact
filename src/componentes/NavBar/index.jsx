@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import "./nabBar.css";
 import logo from "../imagenes/aguila.jpg";
 import CardWidget from "../CardWidget";
@@ -14,8 +14,17 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 export const NavBar =()=>{
    const [contador,setContador]= useState(0);
    const [user,setUser]= useState([{name:'felipe'},{name:'pablo'}]);
+   const [Numero,setNumero]= useState(0);
 
-  const handlerClick= () => {
+   useEffect(()=>{
+    setTimeout(()=>{
+      setNumero(Numero+1);
+    },2000);
+    console.log("se ejecuto");
+    
+   },[contador]);
+  
+   const handlerClick= () => {
       setContador(contador + 1);
   }
 
@@ -48,6 +57,7 @@ export const NavBar =()=>{
          </div>  
          <div>
           <h1>{contador}</h1>
+          <h1>{Numero}</h1>
           <button onClick={handlerClick}>click</button>
           <button onClick={reset}>reset</button>
           <button onClick={addValentin}>agregar vale</button>
