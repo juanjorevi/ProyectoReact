@@ -1,42 +1,52 @@
-import ItemContador from "../ItemListContador";
 import React,{useEffect, useState} from "react";
-import Title from "../Title";
 import Data from "../Data/Data";
+import ItemDetail from "../ItemDetail/ItemDetail";
 import ItemList from "../ItemList/ItemList";
+import { useParams } from "react-router-dom";
 
 
-function getData() {
+function getData(categoriaid) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(Data)
-    }, 2000);
+      if (categoriaid !==undefined){
+       const arrayFiltro= Data.filter((Data)=>{
+          return Data.tipo === categoriaid;
+        })
+        resolve(arrayFiltro);
+        console.log(arrayFiltro);
+      }
+      //else{
+      //  resolve(Data)
+      //}
+     
+    }, 700);
   });
   
 }
 
-export const ItemListContainer=()=>{
+function ItemListContainer({nombre}){
   
   const[Data,SetData]=useState([]);
-
+  const {categoriaid}=useParams();
+  console.log("Id:"+ categoriaid);
   useEffect (()=>{
-    getData().then(respuestaPromise=>{
+     getData(categoriaid).then(respuestaPromise=>{
       SetData(respuestaPromise);
     })
-  },[]);
+  },[categoriaid]);
 
-
-    const onAdd =(valor)=>{
-      console.log(`compraste ${valor} unidades`);  
-    }
     return(
-        <>
-       <Title saludo="juanjo"/>
-       <ItemContador inicial={1} stock={6} onAdd={onAdd}/>
-       <ItemList Data={Data}/>
-       </>
+        <section className="">
+         <ItemList Data={Data}/>
+       </section>
     );
 }
 
 
 
 export default ItemListContainer;
+//{<Title saludo="juanjo"/>}
+//<ItemContador inicial={1} stock={6} onAdd={onAdd}/>
+//const onAdd =(valor)=>{
+//  console.log(`compraste ${valor} unidades`); 
+//}

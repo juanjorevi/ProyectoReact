@@ -1,25 +1,42 @@
-import React,{useEffect,useState} from "react";
+import React,{useEffect, useState} from "react";
+import Data from "../Data/Data";
 import ItemDetail from "../ItemDetail/ItemDetail";
+import ItemList from "../ItemList/ItemList";
+import { useParams } from "react-router-dom";
 
-const peli={id:1,Imagen:"https://m.media-amazon.com/images/M/MV5BZTZmZjY1M2EtNmI0My00MTEyLTg4YmQtMTBkYjkxNDMyZTU1XkEyXkFqcGdeQXVyNjI4OTg2MDE@._V1_.jpg", titulo:"the fittest"}
 
-function ItemDetailContainer() {
-    const [data,setData]=useState({});
-
-    useEffect(()=>{
-        const getData=new Promise (resolve=>{
-            setTimeout(() => {
-                resolve(peli);
-            }, 3000);
-        });
-        getData.then(res=>setData(res));
-    },[]);
-
-    return(
-        <>
-        <ItemDetail data ={data}/>
-        </>
-    )
+function getData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(Data)
+    }, 700);
+  });
+  
 }
 
+function ItemDetailContainer(){
+  
+  const[Data,SetData]=useState([]);
+  const {categoriaid}= useParams(); 
+  useEffect (()=>{
+     getData(categoriaid).then(respuestaPromise=>{
+      SetData(respuestaPromise);
+    })
+  },[categoriaid]);
+
+    return(
+        <section className="text-gra-600 body-font">
+          <ItemList Data={Data}/>
+       </section>
+    );
+}
+
+
+
 export default ItemDetailContainer;
+
+//const onAdd =(valor)=>{
+//    console.log(`compraste ${valor} unidades`);  
+//  }
+//<Title saludo="juanjo"/>
+//<ItemContador inicial={1} stock={6} onAdd={onAdd}/>

@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from "react";
+
 import "./nabBar.css";
 import logo from "../imagenes/aguila.jpg";
 import CardWidget from "../CardWidget";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
-
-
+import { Link } from "react-router-dom";
 
 
 
@@ -42,10 +42,13 @@ export const NavBar =()=>{
           <img src={logo} alt="" />
           <h1>MI PROYECTO</h1>
           <nav>
-            <a className="nav_link" href="#"> categoria 1</a>
-            <a className="nav_link" href="#"> categoria 2</a>
-            <a href=""> <CardWidget/></a>
-            <a className="nav_link" href="#"> <CardWidget/></a>
+            <Link className="nav_link" to="/category/planta"> TIPO PLANTA</Link>
+            <Link className="nav_link" to="/category/fuego"> TIPO FUEGO</Link>
+            <Link to="/category/agua">TIPO AGUA </Link>
+            <Link className="nav_link" to="/category/bicho">TIPO BICHO</Link>
+            <Link className="nav_link" to="/category/bicho"> <CardWidget/></Link>
+            <link rel="stylesheet" href="" />
+            
           </nav>
           <div className="carrito">
             <p>CARRITO</p>
