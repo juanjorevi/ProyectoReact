@@ -1,5 +1,7 @@
 import React from "react";
 import "./item.css";
+
+
 const Item =({Data})=>{
     return(
         <div className=" xl:w-1/3 md:w-1/2 p-4">

@@ -7,11 +7,13 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { Link } from "react-router-dom";
-
+import useCartContext from "../../contex/CartContext";
 
 
 
 export const NavBar =()=>{
+   const {contextFunction}=useCartContext();
+   contextFunction();
    const [contador,setContador]= useState(0);
    const [user,setUser]= useState([{name:'felipe'},{name:'pablo'}]);
    const [Numero,setNumero]= useState(0);

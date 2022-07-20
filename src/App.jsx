@@ -1,4 +1,5 @@
 import React from "react";
+ 
 import  NavBar  from './componentes/NavBar/index';
 import {
   BrowserRouter,
@@ -7,18 +8,25 @@ import {
 } from "react-router-dom";
 import ItemDetailContainer from "./componentes/ItemDetailContainer/ItemDetailContainer";
 import ItemListContainer from "./componentes/itemListContainer";
+import {CartContextProvider} from "../src/contex/CartContext"
+import CartView from "./componentes/CartView/cartView";
+
 
 const App = () =>{
   return(
-    <BrowserRouter>
-      < NavBar /> 
-      <Routes>
-        <Route path="/" element={<ItemListContainer titulo="holaaa"/>}/>
-        <Route path="/category/:categoriaid" element={<ItemListContainer titulo="tipo"/>}/>
-        <Route path="/Data/:itemid" element={<ItemDetailContainer titulo="holaaa"/>}/>
-      </Routes>
-      <ItemDetailContainer />
-    </BrowserRouter>
+    <CartContextProvider >
+      <BrowserRouter>
+     
+       < NavBar /> 
+        <Routes>
+          <Route path="/" element={<ItemListContainer titulo="holaaa"/>}/>
+          <Route path="/category/:categoriaid" element={<ItemListContainer titulo="tipo"/>}/>
+          <Route path="/Data/:itemid" element={<ItemDetailContainer titulo="holaaa"/>}/>
+          <Route path="/cart" element={< CartView />} />
+        </Routes>
+        <ItemDetailContainer />
+      </BrowserRouter>
+    </CartContextProvider>
   );
 }
 

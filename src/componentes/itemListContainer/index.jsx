@@ -46,7 +46,7 @@ function ItemListContainer({nombre}){
 
 export default ItemListContainer;
 //{<Title saludo="juanjo"/>}
-//<ItemContador inicial={1} stock={6} onAdd={onAdd}/>
+//
 //const onAdd =(valor)=>{
 //  console.log(`compraste ${valor} unidades`); 
 //}

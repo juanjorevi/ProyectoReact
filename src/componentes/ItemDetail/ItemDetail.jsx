@@ -2,14 +2,27 @@ import React,{useState} from "react";
 import "./ItemDetail.css";
 import { Link } from "react-router-dom";
 import ItemContador from "../ItemListContador";
+import useCartContex from "../../contex/CartContext";
+
 
 const ItemDetail =({Data})=>{
-    const [gotoCart,setGoToCart]=useState(false)
+    const [isInCart,setIsInCart]=useState(false);
+    const {addToCart}=useCartContex();
+  
+   
 
     const onAdd =(valor)=>{
-        setGoToCart(true)
-        console.log(`compraste ${valor} unidades`);  
-      }
+          isInCart(true);
+          addToCart(Data,valor);
+          console.log("agregado al cart,",Data,valor);
+             
+          if (Data){
+            return <h4>cargando...</h4>
+          }
+          else{
+            
+          }
+        }
     return(
         <div className="container">
             <div className=" row detail">
@@ -17,11 +30,15 @@ const ItemDetail =({Data})=>{
                  <img src={Data.imgUrl} className="image col-xs-12 col-sm-6 col-lg-4" alt={Data.nombre} />
                  <p className="descripcion col-xs-12 col-sm-6 col-lg-4">descripcion:{Data.descripcion}</p>
                  {
-                    gotoCart
-                    ?<Link to="/cart">terminar seleccion de pokemon</Link>
-                    : <ItemContador inicial={1} stock={6} onAdd={onAdd}/>
-
+                      isInCart
+                      ?<Link to="/cart">terminar seleccion de pokemon</Link>
+                     : <ItemContador inicial={1} stock={Data.stock} onAdd={onAdd}/>
                  }
+                 
+                 
+                 
+
+                 
                 </div>
                 <h3 className="name">{Data.nombre}</h3>
                 <p className="caracteristica">TIPO:{Data.tipo}</p>
@@ -37,3 +54,8 @@ const ItemDetail =({Data})=>{
 };
 
 export default ItemDetail;
+//
+//
+//
+//
+//
