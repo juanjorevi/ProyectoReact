@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-import {getFirestore} from "firebase/firestore"
+import {collection, getFirestore, Timestamp} from "firebase/firestore"
 const firebaseConfig = {
   apiKey: "AIzaSyCF_wWVuB-puEc6rI933DrlQrlBpG5c63g",
   authDomain: "ecommers-reactjs.firebaseapp.com",
@@ -17,3 +17,13 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db =getFirestore(app);
+
+export async function createBuyOrder(orderData){
+  const buyTimestamp= Timestamp.now();
+  const orderWithDate={...orderData,
+  date:buyTimestamp};
+  const miColec= collection(db, "buyOrders");
+  const orderDoc= await addDoc (miColec,orderWithDate);
+  
+  console.log("order lista:",orderData);
+}
